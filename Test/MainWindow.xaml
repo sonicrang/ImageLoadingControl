@@ -1,0 +1,18 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Test"
+        xmlns:ImageLoadingControl="clr-namespace:ImageLoadingControl;assembly=ImageLoadingControl" x:Class="Test.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid>
+
+        <ImageLoadingControl:ImageLoadingControl HorizontalAlignment="Left" Height="200" Margin="30,68,0,0" VerticalAlignment="Top" Width="200"  Source="{Binding ImageUrl1}"/>
+        <ImageLoadingControl:ImageLoadingControl HorizontalAlignment="Left" Height="200" Margin="303,68,0,0" VerticalAlignment="Top" Width="200" Source="{Binding ImageUrl2}"/>
+        <ImageLoadingControl:ImageLoadingControl HorizontalAlignment="Left" Height="200" Margin="556,68,0,0" VerticalAlignment="Top" Width="200" Source="{Binding ImageUrl3}"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="343,407,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+
+    </Grid>
+</Window>

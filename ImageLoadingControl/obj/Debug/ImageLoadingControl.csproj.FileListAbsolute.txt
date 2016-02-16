@@ -1,0 +1,11 @@
+D:\GitHub\ImageLoadingControl\ImageLoadingControl\bin\Debug\ImageLoadingControl.dll
+D:\GitHub\ImageLoadingControl\ImageLoadingControl\bin\Debug\ImageLoadingControl.pdb
+D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl.g.cs
+D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl_MarkupCompile.cache
+D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl_MarkupCompile.lref
+D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl.baml
+D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl.g.resources
+D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl.Properties.Resources.resources
+D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl.csproj.GenerateResource.Cache
+D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl.dll
+D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl.pdb
