@@ -125,11 +125,13 @@ namespace ImageLoadingControl
                 else
                 {
                     imageShow.Source = null;
+                    gridError.Visibility = Visibility.Visible;
                 }
             }
             catch
             {
                 imageShow.Source = null;
+                gridError.Visibility = Visibility.Visible;
             }
         }
         private BitmapImage GetBitmapImage(string path, int imageWidth = 0)
