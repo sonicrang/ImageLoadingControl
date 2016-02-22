@@ -68,10 +68,14 @@ namespace ImageLoadingControl
             {
                 try
                 {
+                    this.story.Stop();
+                    imageLoading.Visibility = Visibility.Collapsed;
+
                     BitmapImage bitmapImage = e.Result as BitmapImage;
                     if (bitmapImage != null)
                     {
                         imageShow.Source = bitmapImage;
+                        gridError.Visibility = Visibility.Collapsed;
                     }
 
                     worker.Dispose();
@@ -106,7 +110,8 @@ namespace ImageLoadingControl
 
                 if (path.StartsWith("http"))
                 {
-                    StartLoading();
+                    this.story.Begin();
+                    imageLoading.Visibility = Visibility.Visible;
                     worker.RunWorkerAsync(path);
                 }
                 else
@@ -152,23 +157,14 @@ namespace ImageLoadingControl
                     }
                     bitmap.EndInit();
                     bitmap.Freeze();
+
+                    gridError.Visibility = Visibility.Collapsed;
                 }
 
                 return bitmap;
             }
             else
                 return null;
-        }
-
-        private void StartLoading()
-        {
-            this.story.Begin();
-            imageLoading.Visibility = Visibility.Visible;
-        }
-        private void StopLoading()
-        {
-            this.story.Stop();
-            imageLoading.Visibility = Visibility.Collapsed;
         }
 
     }
