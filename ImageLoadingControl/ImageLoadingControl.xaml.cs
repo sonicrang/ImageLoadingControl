@@ -105,24 +105,31 @@ namespace ImageLoadingControl
 
         private void GetImage()
         {
-            if (!string.IsNullOrEmpty(path))
+            try
             {
-
-                if (path.StartsWith("http"))
+                if (!string.IsNullOrEmpty(path))
                 {
-                    this.story.Begin();
-                    imageLoading.Visibility = Visibility.Visible;
-                    worker.RunWorkerAsync(path);
+
+                    if (path.StartsWith("http"))
+                    {
+                        this.story.Begin();
+                        imageLoading.Visibility = Visibility.Visible;
+                        worker.RunWorkerAsync(path);
+                    }
+                    else
+                    {
+                        imageShow.Source = GetBitmapImage(path);
+                    }
+
                 }
                 else
                 {
-                    imageShow.Source = GetBitmapImage(path);
+                    imageShow.Source = null;
                 }
-
             }
-            else
+            catch
             {
-                
+                imageShow.Source = null;
             }
         }
         private BitmapImage GetBitmapImage(string path, int imageWidth = 0)
