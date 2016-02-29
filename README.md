@@ -16,6 +16,6 @@
 
 下图分别显示了控件加载中，加载完成，加载失败三种状态：
 
-<img source='\images\2016\imagecontrol1.png' alt='图1' />
+<img source='https://github.com/sonicrang/ImageLoadingControl/blob/master/imagecontrol.png' alt='图1' />
 
 [控件代码和demo](https://github.com/sonicrang/ImageLoadingControl)
