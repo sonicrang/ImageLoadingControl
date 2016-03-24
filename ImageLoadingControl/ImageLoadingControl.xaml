@@ -23,7 +23,7 @@
                     <RotateTransform x:Name="SpinnerRotate" Angle="0" />
                 </Image.RenderTransform>
             </Image>
-            <Image Name="imageShow" RenderTransformOrigin="0.5,0.5" Stretch="Fill"/>
+            <Image Name="imageShow" RenderTransformOrigin="0.5,0.5" />
         </Grid>
 
     </Grid>

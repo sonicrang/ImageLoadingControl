@@ -9,4 +9,3 @@ D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl.
 D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl.csproj.GenerateResource.Cache
 D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl.dll
 D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl.pdb
-D:\GitHub\ImageLoadingControl\ImageLoadingControl\obj\Debug\ImageLoadingControl.csprojResolveAssemblyReference.cache

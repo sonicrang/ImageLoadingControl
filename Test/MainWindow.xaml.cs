@@ -82,5 +82,19 @@ namespace Test
             }
         }
 
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            ImageUrl2 = @"https://pixabay.com/static/uploads/photo/2016/01/02/00/39/cockchafer-1117259_960_720.jpg";
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            ImageUrl2 = @"https://pixabay.com/static/uploads/photo/2014/02/10/19/17/the-stones-263661_960_720.jpg";
+        }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            ImageUrl2 = @"https://pixabay.com/static/uploads/photo/2012/10/22/19/37/granite-stones-62462_960_720.jpg";
+        }
     }
 }

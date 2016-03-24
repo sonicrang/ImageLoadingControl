@@ -3,8 +3,10 @@ using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Net.Cache;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 
@@ -17,36 +19,34 @@ namespace ImageLoadingControl
     {
         private Storyboard story;
         private string path;
-        BackgroundWorker worker = new BackgroundWorker();
+        private string token;
         public ImageLoadingControl()
         {
             InitializeComponent();
-            InitializeComponent();
             story = (base.Resources["waiting"] as Storyboard);
+        }
+        private async Task<BitmapImage> DownloadHttpImage(string Path)
+        {
+            //空值直接返回
+            if (string.IsNullOrEmpty(Path))
+                return null;
 
-
-            worker.DoWork += (s, e) =>
+            return await Task.Run<BitmapImage>(() =>
             {
-                Uri uri = new Uri(e.Argument.ToString());
-
                 using (WebClient webClient = new WebClient())
                 {
-                    webClient.Proxy = null;  //avoids dynamic proxy discovery delay
+                    Uri uri = new Uri(Path);
+                    BitmapImage image = new BitmapImage();
                     webClient.CachePolicy = new RequestCachePolicy(RequestCacheLevel.Default);
                     try
                     {
                         byte[] imageBytes = null;
-
                         imageBytes = webClient.DownloadData(uri);
-
                         if (imageBytes == null)
                         {
-                            e.Result = null;
-                            return;
+                            image = null;
                         }
                         MemoryStream imageStream = new MemoryStream(imageBytes);
-                        BitmapImage image = new BitmapImage();
-
                         image.BeginInit();
                         image.StreamSource = imageStream;
                         image.CacheOption = BitmapCacheOption.OnLoad;
@@ -54,56 +54,71 @@ namespace ImageLoadingControl
 
                         image.Freeze();
                         imageStream.Close();
-
-                        e.Result = image;
                     }
                     catch (WebException ex)
                     {
-                        e.Result = null;
+                        image = null;
                     }
+                    return image;
                 }
-            };
+            });
+        }
 
-            worker.RunWorkerCompleted += (s, e) =>
+        private async void GetHttpImage(string Path, string token)
+        {
+            if (!string.IsNullOrEmpty(Path))
             {
-                try
+                BitmapImage image = await DownloadHttpImage(Path);
+
+                if (token == this.token)  //下载队列token = 当前请求token 才能赋值
                 {
                     this.story.Stop();
                     imageLoading.Visibility = Visibility.Collapsed;
-
-                    BitmapImage bitmapImage = e.Result as BitmapImage;
-                    if (bitmapImage != null)
+                    imageShow.Source = image;
+                    if (image != null)
                     {
-                        imageShow.Source = bitmapImage;
                         gridError.Visibility = Visibility.Collapsed;
                     }
-
-                    worker.Dispose();
                 }
-                catch
-                {
-                    imageShow.Source = null;
-                }
-            };
+            }
         }
+
         public string Source
         {
             get { return (string)GetValue(SourceProperty); }
             set { SetValue(SourceProperty, value); }
         }
 
+        public Stretch Stretch
+        {
+            get { return (Stretch)GetValue(StretchProperty); }
+            set { SetValue(StretchProperty, value); }
+        }
+
         // Using a DependencyProperty as the backing store for Source.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SourceProperty =
             DependencyProperty.Register("Source", typeof(string), typeof(ImageLoadingControl), new FrameworkPropertyMetadata(new PropertyChangedCallback(CallBack)));
 
+        public static readonly DependencyProperty StretchProperty =
+            DependencyProperty.Register("Stretch", typeof(Stretch), typeof(ImageLoadingControl), new FrameworkPropertyMetadata(Stretch.Fill, new PropertyChangedCallback(StretchCallBack)));
+
         private static void CallBack(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ImageLoadingControl imgCtl = d as ImageLoadingControl;
+            imgCtl.imageShow.Source = null;
+            string token = Guid.NewGuid().ToString("N");
+            imgCtl.token = token;
             imgCtl.path = e.NewValue != null ? e.NewValue.ToString() : "";
-            imgCtl.GetImage();
+            imgCtl.GetImage(token);
         }
 
-        private void GetImage()
+        private static void StretchCallBack(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ImageLoadingControl imgCtl = d as ImageLoadingControl;
+            imgCtl.imageShow.Stretch = (Stretch)e.NewValue;
+        }
+
+        private void GetImage(string token = null)
         {
             try
             {
@@ -114,7 +129,7 @@ namespace ImageLoadingControl
                     {
                         this.story.Begin();
                         imageLoading.Visibility = Visibility.Visible;
-                        worker.RunWorkerAsync(path);
+                        GetHttpImage(path, token);
                     }
                     else
                     {
@@ -128,15 +143,17 @@ namespace ImageLoadingControl
                     gridError.Visibility = Visibility.Visible;
                 }
             }
-            catch
+            catch (Exception er)
             {
                 imageShow.Source = null;
+                Console.WriteLine("图片加载异常：" + er.ToString());
                 gridError.Visibility = Visibility.Visible;
             }
         }
         private BitmapImage GetBitmapImage(string path, int imageWidth = 0)
         {
             BitmapImage bitmap;
+
             if (File.Exists(path))
             {
                 using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(path)))
@@ -164,6 +181,8 @@ namespace ImageLoadingControl
                     {
                         bitmap.StreamSource = ms;
                     }
+
+
                     bitmap.EndInit();
                     bitmap.Freeze();
 
@@ -175,6 +194,5 @@ namespace ImageLoadingControl
             else
                 return null;
         }
-
     }
 }

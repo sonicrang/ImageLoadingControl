@@ -1,11 +1,12 @@
+D:\GitHub\ImageLoadingControl\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+D:\GitHub\ImageLoadingControl\Test\obj\Debug\App.g.cs
+D:\GitHub\ImageLoadingControl\Test\obj\Debug\Test_MarkupCompile.cache
+D:\GitHub\ImageLoadingControl\Test\bin\Debug\Test.exe.config
 D:\GitHub\ImageLoadingControl\Test\bin\Debug\Test.exe
 D:\GitHub\ImageLoadingControl\Test\bin\Debug\Test.pdb
 D:\GitHub\ImageLoadingControl\Test\bin\Debug\ImageLoadingControl.dll
 D:\GitHub\ImageLoadingControl\Test\bin\Debug\ImageLoadingControl.pdb
-D:\GitHub\ImageLoadingControl\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
 D:\GitHub\ImageLoadingControl\Test\obj\Debug\MainWindow.g.cs
-D:\GitHub\ImageLoadingControl\Test\obj\Debug\App.g.cs
-D:\GitHub\ImageLoadingControl\Test\obj\Debug\Test_MarkupCompile.cache
 D:\GitHub\ImageLoadingControl\Test\obj\Debug\Test_MarkupCompile.lref
 D:\GitHub\ImageLoadingControl\Test\obj\Debug\MainWindow.baml
 D:\GitHub\ImageLoadingControl\Test\obj\Debug\Test.g.resources

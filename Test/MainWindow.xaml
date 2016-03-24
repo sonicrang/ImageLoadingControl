@@ -12,7 +12,10 @@
         <ImageLoadingControl:ImageLoadingControl HorizontalAlignment="Left" Height="200" Margin="30,68,0,0" VerticalAlignment="Top" Width="200"  Source="{Binding ImageUrl1}"/>
         <ImageLoadingControl:ImageLoadingControl HorizontalAlignment="Left" Height="200" Margin="303,68,0,0" VerticalAlignment="Top" Width="200" Source="{Binding ImageUrl2}"/>
         <ImageLoadingControl:ImageLoadingControl HorizontalAlignment="Left" Height="200" Margin="556,68,0,0" VerticalAlignment="Top" Width="200" Source="{Binding ImageUrl3}"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="343,407,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="270,370,0,0" VerticalAlignment="Top" Width="74" Click="button_Click"/>
+        <Button x:Name="button_Copy" Content="Button" HorizontalAlignment="Left" Margin="218,460,0,0" VerticalAlignment="Top" Width="74" Click="button1_Click"/>
+        <Button x:Name="button_Copy1" Content="Button" HorizontalAlignment="Left" Margin="348,460,0,0" VerticalAlignment="Top" Width="74" Click="button2_Click"/>
+        <Button x:Name="button_Copy2" Content="Button" HorizontalAlignment="Left" Margin="476,460,0,0" VerticalAlignment="Top" Width="74" Click="button3_Click"/>
 
     </Grid>
 </Window>
